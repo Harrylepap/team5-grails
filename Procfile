@@ -1,1 +1,1 @@
-web: java -Dgrails.env=prod -Dserver.port=443 -jar build/libs/team5-grails-0.1.war
+web: java -Dgrails.env=prod -Dserver.port=8080 -jar build/libs/team5-grails-0.1.war
