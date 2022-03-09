@@ -1,1 +1,1 @@
-web: cd build ; java -Dgrails.env=prod -jar ./libs/*.jar --expand-war --port $PORT libs/*.war
+web: java -Dgrails.env=prod -Dserver.port=$PORT -jar build/libs/*.war
