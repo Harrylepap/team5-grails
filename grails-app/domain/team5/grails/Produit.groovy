@@ -8,10 +8,13 @@ class Produit {
     Boolean active
     Date dateCreated
     Date lastUpdated
-    List images
+
+    static belongsTo = [auteur: Utilisateur]
+
+    static hasMany = [images: Image]
 
     static mapping = {
-        description type: "text"
+        description type: 'text'
     }
 
     static constraints = {

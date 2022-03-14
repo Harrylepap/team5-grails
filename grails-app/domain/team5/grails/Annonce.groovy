@@ -6,7 +6,7 @@ class Annonce {
     String description
     Boolean active
     Date dateCreated
-    List images
+    Image image
 
     static mapping = {
         description type: "text"
