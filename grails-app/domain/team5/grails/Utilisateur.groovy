@@ -1,5 +1,8 @@
 package team5.grails
 
+import grails.rest.Resource
+
+@Resource(uri = "/api/utilisateurs")
 class Utilisateur {
 
     String username
