@@ -5,8 +5,7 @@ import javax.transaction.Transactional
 class BootStrap {
 
     def init = { servletContext ->
-        //addUtilisateurAndProduit()
-        testAddProduct()
+        anotherMagicalData()
     }
     def destroy = {
     }
@@ -15,7 +14,7 @@ class BootStrap {
      * Generation d'utilisateur et de produit
      */
     @Transactional
-    def addUtilisateurAndProduit(){
+    def addUtilisateurAndProduit() {
         ["Harrylepap", "Sitraka", "Riana"].each { String username ->
             def utilisateurInstance = new Utilisateur(username: username, email: "$username@ituniversity-mg.com", createdAt: new Date())
             (1..5).each { Integer index ->
@@ -25,26 +24,63 @@ class BootStrap {
                         prix: 2 * index,
                         active: Boolean.TRUE
                 )
-                if(!produitInstance.save())
+                if (!produitInstance.save())
                     System.out.println("Le produit ne peut pas être sauvegarder")
             }
-            if(!utilisateurInstance.save())
+            if (!utilisateurInstance.save())
                 System.out.println("L'utilisateur ne peut pas être sauvegarder")
         }
     }
 
     @Transactional
-    def testAddProduct(){
-        new Produit(
-                libelle: "Test titre",
-                description: "Description test",
-                prix: 12,
-                dateCreated: new Date(),
-                lastUpdated: new Date(),
-                auteur: new Utilisateur(username: "harrylepap", email: "rbako@maunexus.com", createdAt: new Date()).save(),
-                images: [new Image(filename: "produits/1.jpg").save()],
-                active: Boolean.TRUE
-        ).save()
+    def testAddProduct() {
 
+        for (int i = 1; i<= 10; i++){
+            def utilisateurInstance = new Utilisateur(username: "harrylepap", email: "rbako@ituniversity-mg.com", createdAt: new Date())
+            utilisateurInstance.save()
+            def produitInstance = new Produit(
+                    libelle: "Test titre",
+                    description: "Description Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    prix: 12,
+                    dateCreated: new Date(),
+                    lastUpdated: new Date(),
+                    auteur: utilisateurInstance,
+                    active: Boolean.TRUE,
+                    images: [new Image(filename: "produits-.jpg")]
+            )
+            if (!produitInstance.save(flush: true)) {
+                produitInstance.errors.allErrors.each {
+                    println it
+                }
+            }
+        }
+
+    }
+
+    @Transactional
+    def anotherMagicalData(){
+        ["harry", "sandie"].each {String username ->
+            def utilisateurInstance = new Utilisateur(username: username, email: "$username@ituniversity-mg.com", createdAt: new Date())
+            (1..5).each {
+                Integer index ->
+                    def produitInstance = new Produit(
+                            libelle: "Test titre",
+                            description: "Description Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                            prix: 12,
+                            dateCreated: new Date(),
+                            lastUpdated: new Date(),
+                            auteur: utilisateurInstance,
+                            active: Boolean.TRUE,
+                    )
+                    (1..3).each {
+                        produitInstance.addToImages( new Image(filename: "fichier_$username-$index-$it-a.jpg"))
+                        produitInstance.errors.getAllErrors().each {
+                            println(it)
+                        }
+                    }
+                    utilisateurInstance.addToProduits(produitInstance)
+                    utilisateurInstance.save()
+            }
+        }
     }
 }
