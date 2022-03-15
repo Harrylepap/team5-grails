@@ -16,3 +16,18 @@ Ce qu'il est requis pour commencer avec le projet...
 - OpenJDK 1.8
 - Intellij (community ou student ou pro version)
 - de la bonne volonté
+
+### Documentation de l'API
+Les API RESTful se basent sur le protocole HTTP pour transférer les informations – le même protocole sur lequel la communication web est fondée.
+Les domaines manipulisable au niveau de l'API sont :
+- utilisateurs
+- produits
+- publicites
+- images
+
+| Domaine    	| Methode 	| Description                                        	  | URL             	|   	|
+|------------	|---------	|-------------------------------------------------------|-----------------	|---	|
+| ${domaine} 	|   GET   	| Affiche la liste de tous les ${domaine} du système 	  | /api/${domaine} 	|   	|
+| ${domaine} 	|   POST  	| Créé un ${domaine} dans le système                  	 | /api/${domaine} 	|   	|
+| ${domaine} 	|   PUT   	| Modifie l'information d'un ${domaine}              	  | /api/${domaine} 	|   	|
+| ${domaine} 	| DELETE  	| Supprime un ${domaine}du système                   	  | /api/${domaine} 	|   	|
