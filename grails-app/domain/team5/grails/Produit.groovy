@@ -1,5 +1,7 @@
 package team5.grails
 
+import com.sun.org.apache.xpath.internal.operations.Bool
+
 class Produit {
 
     String libelle
@@ -15,12 +17,16 @@ class Produit {
 
     static mapping = {
         description type: 'text'
+        dateCreated date: new Date()
+        active TRUE: Boolean.TRUE
     }
 
     static constraints = {
         libelle nullable: Boolean.FALSE, blank: Boolean.FALSE, size: 5..255
         description nullable: Boolean.FALSE, blank: Boolean.FALSE
         prix min: 0d
-        active nullable: Boolean.FALSE
+        dateCreated nullable: Boolean.TRUE
+        lastUpdated nullable: Boolean.TRUE
+
     }
 }
