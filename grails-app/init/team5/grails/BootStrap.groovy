@@ -82,5 +82,21 @@ class BootStrap {
                     utilisateurInstance.save()
             }
         }
+
+        insertAnnonce()
+    }
+
+    @Transactional
+    def insertAnnonce(){
+        (1..3).each {
+            def annonceInstance = new Annonce(
+                    libelle: "Test $it",
+                    description: "Hola",
+                    active: Boolean.TRUE,
+                    dateCreated: new Date(),
+                    image: new Image(filename: "$it-0.jpeg")
+            )
+            annonceInstance.save()
+        }
     }
 }

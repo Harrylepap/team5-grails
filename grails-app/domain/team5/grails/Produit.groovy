@@ -3,7 +3,7 @@ package team5.grails
 import com.sun.org.apache.xpath.internal.operations.Bool
 import grails.rest.Resource
 
-@Resource(uri = "/api/produits")
+//@Resource(uri = "/api/produits")
 class Produit {
 
     String libelle
