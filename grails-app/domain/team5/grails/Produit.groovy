@@ -1,7 +1,6 @@
 package team5.grails
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import grails.rest.Resource
+import grails.databinding.BindUsing
 
 //@Resource(uri = "/api/produits")
 class Produit {
@@ -12,6 +11,7 @@ class Produit {
     Boolean active
     Date dateCreated
     Date lastUpdated
+
 
     static belongsTo = [auteur: Utilisateur]
 
