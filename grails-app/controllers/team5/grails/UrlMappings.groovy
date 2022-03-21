@@ -9,6 +9,8 @@ class UrlMappings {
             }
         }
 
+        "/api/searchAdvancedProduct?libelle=$libelle&categorie=$categorie&offset=$offset"(controller: 'api', action: 'searchAdvancedProduct')
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

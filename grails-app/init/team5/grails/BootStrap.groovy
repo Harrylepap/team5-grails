@@ -64,7 +64,7 @@ class BootStrap {
         }
         ["harry", "sandie"].eachWithIndex {String username, i ->
             def utilisateurInstance = new Utilisateur(username: username, email: "$username@ituniversity-mg.com", createdAt: new Date())
-            (1..5).each {
+            (1..10).each {
                 Integer index ->
                     def produitInstance = new Produit(
                             libelle: "Test titre",
