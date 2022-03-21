@@ -11,6 +11,7 @@ class Produit {
     Boolean active
     Date dateCreated
     Date lastUpdated
+    Categorie categorie
 
 
     static belongsTo = [auteur: Utilisateur]
@@ -29,6 +30,6 @@ class Produit {
         prix min: 0d
         dateCreated nullable: Boolean.TRUE
         lastUpdated nullable: Boolean.TRUE
-
+        categorie nullable: Boolean.FALSE
     }
 }
