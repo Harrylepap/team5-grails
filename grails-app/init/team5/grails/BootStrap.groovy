@@ -59,7 +59,10 @@ class BootStrap {
 
     @Transactional
     def anotherMagicalData(){
-        ["harry", "sandie"].each {String username ->
+        ["t-shirt", "pantalon", "chemise", "costard"].each {String libelle ->
+            new Categorie(libelle: libelle).save()
+        }
+        ["harry", "sandie"].eachWithIndex {String username, i ->
             def utilisateurInstance = new Utilisateur(username: username, email: "$username@ituniversity-mg.com", createdAt: new Date())
             (1..5).each {
                 Integer index ->
@@ -71,6 +74,7 @@ class BootStrap {
                             lastUpdated: new Date(),
                             auteur: utilisateurInstance,
                             active: Boolean.TRUE,
+                            categorie: Categorie.get(i+1)
                     )
                     (1..3).each {
                         produitInstance.addToImages( new Image(filename: "fichier_$username-$index-$it-a.jpg"))
@@ -79,8 +83,9 @@ class BootStrap {
                         }
                     }
                     utilisateurInstance.addToProduits(produitInstance)
-                    utilisateurInstance.save()
+
             }
+            utilisateurInstance.save()
         }
 
         insertAnnonce()
