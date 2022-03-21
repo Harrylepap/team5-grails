@@ -7,7 +7,7 @@ import static org.springframework.http.HttpStatus.*
 @Secured(value=["hasAnyRole('ROLE_CLIENT','ROLE_ADMIN')"])
 class UtilisateurController {
 
-    UtilisateurService utilisateurService
+    def utilisateurService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
