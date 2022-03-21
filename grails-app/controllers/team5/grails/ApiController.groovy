@@ -86,46 +86,15 @@ class ApiController {
         return response.status = 406
     }
 
-    def searchProductByLibelle() {
+    def searchAdvancedProduct() {
         def produits
         // recuperation de la methode HTTP de l'utilisateur
         switch (request.getMethod()) {
             case "GET":
-                if (!params.id) {
+                if (!params.libelle || !params.categorie || !params.offset) {
                     return response.status = 400
                 }
-                produits = Produit.findAllByLibelleLike("%$params.id%")
-                if (!produits)
-                    response.status = 404
-
-                response.withFormat {
-                    json { render produits as JSON }
-                    xml { render produits as XML }
-                }
-                break
-
-            case "POST":
-                break
-
-            case "PUT":
-                break
-            case "DELETE":
-                break
-            default:
-                break
-        }
-        return response.status = 406
-    }
-
-    def findAllProductsByCategorie() {
-        def produits
-        // recuperation de la methode HTTP de l'utilisateur
-        switch (request.getMethod()) {
-            case "GET":
-                if (!params.id) {
-                    return response.status = 400
-                }
-                produits = Produit.findAllByCategorie(Categorie.get(params.id))
+                produits = Produit.findAllByCategorieAndLibelleLike(Categorie.get(params.categorie),"%$params.libelle%",[max: 10, offset: params.offset])
                 if (!produits)
                     response.status = 404
 
